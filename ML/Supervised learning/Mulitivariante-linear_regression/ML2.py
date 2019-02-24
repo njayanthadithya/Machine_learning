@@ -4,12 +4,30 @@ import matplotlib.pyplot  as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 data = pd.read_csv('ex1data2.txt', sep = ',',header = None)
-x = data.iloc[:,0:1]
-x1 = data.iloc[:,1:2]
+print(data.head())
+#print(data.describe())
+
+fig,axes = plt.subplots(figsize= (12,4),nrows=1,ncols=2)
+axes[0].scatter(data[0],data[2],color='b')
+axes[0].set_xlabel('size (square feet)')
+axes[0].set_ylabel('prizes')
+axes[0].set_title('house prizes against size of house')
+axes[1].scatter(data[1],data[2],color='g')
+axes[1].set_xlabel('number of bedrooms')
+axes[1].set_ylabel('prizes')
+axes[1].set_title('house prize against number of bedrooms')
+plt.tight_layout()
+plt.show()
+
+
+
+
+x = data.iloc[:,0:2] #reads 
+# x1 = data.iloc[:,1:2]
 y = data.iloc[:,2]
 m = len(y)
 #print(m)
-data.head()
+#data.head()
 #print(data.head())
 
 x = (x - np.mean(x))/np.std(x)
@@ -17,7 +35,7 @@ x = (x - np.mean(x))/np.std(x)
 plt.scatter(x,y, c=colors)
 plt.ylabel('profit ')
 plt.show()
-'''
+
 fig = plt.figure()
 
 ax = fig.add_subplot(111,projection = '3d')
@@ -50,4 +68,3 @@ print(theta)
 J = computeCostMulti(x, y, theta)
 print(J)
 
-'''
